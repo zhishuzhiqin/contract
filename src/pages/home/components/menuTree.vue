@@ -13,7 +13,8 @@
 			  <ul class="child-list">
 				  <li
 					class="child"
-					v-for="child of item.children"
+					v-for="(child, index) of item.children"
+					:key="index"
 				  >
 					  {{child.title}}
 				  </li>
@@ -24,48 +25,33 @@
 </template>
 
 <script>
-import Collapse from 'element-ui'
 export default {
   name: 'menuTree',
   data () {
     return {
 	  activeNames: ['1'],
       list: [
-		{
+        {
           title: '合同管理',
-		  id:'1',
-		  iconfont:'&#xe6a2;',
-		  children: [
-			  {
-				  title: '合同变量管理'
-			  },
-			  {
-				  title: '合同模板管理'
-			  },
-			  {
-				  title: '规则设置'
-			  },
-			  {
-				  title: '规则设置'
-			  }
-		  ]
-		},
-		{
+		  id: '1',
+		  iconfont: '&#xe6a2;',
+		  children: [{title: '合同变量管理'}, {title: '合同模板管理'}, {title: '规则设置'}, {title: '规则设置'}]
+        },
+        {
 		  title: '合同查询',
-		  id:'2',
-		  iconfont:'&#xe6ac;',
+		  id: '2',
+		  iconfont: '&#xe6ac;',
 		  children: [{title: '合同调用记录查询'}]
-		},
+        },
 	    {
 		  title: '账户管理',
-		  id:'3',
-		  iconfont:'&#xe6b8;',
-		  children: [{title: '用户管理'},{title: '变量管理'}]
+		  id: '3',
+		  iconfont: '&#xe6b8;',
+		  children: [{title: '用户管理'}, {title: '变量管理'}]
 	    }
 	  ]
     }
-  },
-  methods: {}
+  }
 }
 </script>
 

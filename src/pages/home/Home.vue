@@ -19,7 +19,7 @@ export default {
   name: 'Home',
   components: {
     menuTree,
-	homeHead
+    homeHead
   }
 }
 </script>
