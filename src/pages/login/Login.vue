@@ -43,7 +43,7 @@ export default {
         alert("请输入用户名")
       } else {
 		let data = {'username':this.username,'password':this.password}
-        axios.post('/api/userInfo.json', data).then(this.infoCheck)
+        axios.get('/api/userInfo.json').then(this.infoCheck)
       }
     },
     infoCheck (res) {

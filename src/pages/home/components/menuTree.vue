@@ -15,6 +15,7 @@
 					class="child"
 					v-for="(child, index) of item.children"
 					:key="index"
+					@click="handleMenuClick"
 				  >
 					  {{child.title}}
 				  </li>
@@ -51,6 +52,11 @@ export default {
 	    }
 	  ]
     }
+  },
+  methods: {
+	handleMenuClick (e) {
+		  this.$emit('change', e.target.innerText, e.$index)
+	  }
   }
 }
 </script>
