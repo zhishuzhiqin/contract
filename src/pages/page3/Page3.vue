@@ -1,11 +1,11 @@
 <template>
-	<div>mainPage2</div>
+	<div>规则设置</div>
 </template>
 
 <script>
-export default {
-  name: 'mainPage2'
-}
+	export default {
+		name: 'Page3'
+	}
 </script>
 
 <style lang="stylus" scoped="scoped">

@@ -1,5 +1,5 @@
 <template>
-	<div>Page2</div>
+	<div>合同模板管理</div>
 </template>
 
 <script>

@@ -15,7 +15,8 @@
 					class="child"
 					v-for="(child, index) of item.children"
 					:key="index"
-					@click="handleMenuClick"
+					@click="handleMenuClick(index, $event)"
+					v-bind:class="{'child-current': index==current}"
 				  >
 					  {{child.title}}
 				  </li>
@@ -31,6 +32,8 @@ export default {
   data () {
     return {
 	  activeNames: ['1'],
+	  current: 0,
+	  currentClass: 'child-current',
       list: [
         {
           title: '合同管理',
@@ -54,8 +57,15 @@ export default {
     }
   },
   methods: {
-	handleMenuClick (e) {
-		  this.$emit('change', e.target.innerText, e.$index)
+    addClass (className) {
+
+    },
+	handleMenuClick (index, e) {
+	  let val = {
+		  menuIndex: index
+	  }
+		this.current = index
+	  this.$emit('change', val)
 	  }
   }
 }
@@ -88,7 +98,10 @@ export default {
 		padding-left: 1rem
 		height: 1rem
 		display: block
-	.child:hover
+		&:hover
+			background-color: #46464e
+			color:#fff
+	.child-current
 		background-color: #46464e
 		color:#fff
 </style>
