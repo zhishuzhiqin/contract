@@ -31,9 +31,8 @@ export default {
     homeHead
   },
   methods: {
-    handleMenuChange (val) {
-	  console.log(val.menuIndex)
-	  this.$router.push('/page' + (val.menuIndex + 1));
+    handleMenuChange (url) {
+	  this.$router.push(url);
     }
   }
 

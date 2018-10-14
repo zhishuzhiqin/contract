@@ -22,6 +22,7 @@
 
 <script>
 import axios from 'axios'
+import qs from 'qs'
 import { setCookie, getCookie } from '../../assets/js/cookie.js'
 export default {
   name: 'Login',
@@ -42,19 +43,29 @@ export default {
       if (this.username == '' || this.password == '') {
         alert("请输入用户名")
       } else {
-		let data = {'username':this.username,'password':this.password}
-        axios.get('/api/userInfo.json').then(this.infoCheck)
+		    let data = {'username':this.username,'password':this.password}
+        axios({
+          method: 'POST',
+          url: '/api/user/login.do',
+          data: qs.stringify({
+            userCode: this.username,
+            password: this.password,
+            status: 0
+          }),
+          headers: {
+            'Content-type': 'application/x-www-form-urlencoded'
+          }
+        }).then(this.infoCheck)
       }
     },
     infoCheck (res) {
-      res = res.data
-	  if (res.ret && res.data) {
-        const users = res.data
-		this.$router.push('/home')
-		console.log(res)
-	  }
-
-    },
+      console.log(res)
+      if (res.data.success) {
+        this.$router.push('/home')
+      } else {
+        alert('用户名密码错误')
+      }
+	  },
     register () {
       alert('注册成功')
     },
@@ -62,7 +73,7 @@ export default {
 	  this.showRegister = !this.showRegister
       this.showLogin = !this.showLogin
     },
-	toRegister () {
+    toRegister () {
 	  this.showLogin = !this.showLogin
 	  this.showRegister = !this.showRegister
     }

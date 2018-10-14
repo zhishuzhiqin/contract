@@ -1,10 +1,10 @@
 <template>
-	<div>规则设置</div>
+	<div>规则检查</div>
 </template>
 
 <script>
 	export default {
-		name: 'Page3'
+		name: 'RuleCheck'
 	}
 </script>
 

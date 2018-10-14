@@ -1,11 +1,11 @@
 <template>
-	<div>合同模板管理</div>
+	<div>规则设置</div>
 </template>
 
 <script>
-export default {
-  name: 'Page2'
-}
+	export default {
+		name: 'RuleSetting'
+	}
 </script>
 
 <style lang="stylus" scoped="scoped">

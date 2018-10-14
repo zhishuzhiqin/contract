@@ -4,7 +4,7 @@
 
 <script>
 export default {
-  name: 'Page1'
+  name: 'VariableManage'
 }
 </script>
 
