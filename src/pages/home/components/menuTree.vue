@@ -28,58 +28,58 @@
 
 <script>
 export default {
-  name: "menuTree",
-  data() {
+	name: 'menuTree',
+  data () {
     return {
-      activeNames: ["1"],
+      activeNames: ['1'],
       current: 0,
-      currentClass: "child-current",
+      currentClass: 'child-current',
       list: [
         {
-          title: "合同管理",
-          id: "1",
-          iconfont: "&#xe6a2;",
+          title: '合同管理',
+          id: '1',
+          iconfont: '&#xe6a2;',
           children: [
             {
-              title: "合同变量管理",
-              url: "/variableManage"
+              title: '合同变量管理',
+              url: '/variableManage'
             },
             {
-              title: "合同模板管理",
-              url: "/templateManage"
+              title: '合同模板管理',
+              url: '/templateManage'
             },
             {
-              title: "规则设置",
-              url: "/ruleSetting"
+              title: '规则设置',
+              url: '/ruleSetting'
             },
             {
-              title: "规则设置",
-              url: ""
+              title: '规则设置',
+              url: ''
             }
           ]
         },
         {
-          title: "合同查询",
-          id: "2",
-          iconfont: "&#xe6ac;",
-          children: [{ title: "合同调用记录查询", url: "" }]
+          title: '合同查询',
+          id: '2',
+          iconfont: '&#xe6ac;',
+          children: [{ title: '合同调用记录查询', url: '' }]
         },
         {
-          title: "账户管理",
-          id: "3",
-          iconfont: "&#xe6b8;",
-          children: [{ title: "用户管理", url: '' }, { title: "变量管理", url: '' }]
+          title: '账户管理',
+          id: '3',
+          iconfont: '&#xe6b8;',
+          children: [{ title: '用户管理', url: '' }, { title: '变量管理', url: '' }]
         }
       ]
-    };
+    }
   },
   methods: {
-    addClass(className) {},
-    handleMenuClick(url) {
-      this.$emit("change", url)
+    addClass (className) {},
+    handleMenuClick (url) {
+      this.$emit('change', url)
     }
   }
-};
+}
 </script>
 
 <style lang="stylus" scoped="scoped">

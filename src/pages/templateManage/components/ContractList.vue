@@ -1,7 +1,7 @@
 <template>
 	<el-table
     :data="contractList"
-    height="250"
+    height="500"
     border
     style="width: 100%">
     <el-table-column
@@ -23,15 +23,15 @@
 
 <script>
 export default {
-  name: "ContractList",
+  name: 'ContractList',
   props: {
     contractList: Array
   },
-  data() {
-    return {};
+  data () {
+    return {}
   },
   methods: {}
-};
+}
 </script>
 
 <style lang="stylus" scoped="scoped">

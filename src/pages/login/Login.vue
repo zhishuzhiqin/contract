@@ -1,21 +1,11 @@
 <template>
 	<div>
-		<div class="login-wrap" v-show="showLogin">
-			<h3>登录</h3>
+		<div class="login-wrap">
+			<h1>登录</h1>
 			<p v-show="showTishi">{{tishi}}</p>
 			<input type="text" placeholder="请输入用户名" v-model="username">
 			<input type="password" placeholder="请输入密码" v-model="password">
 			<button @click="login">登录</button>
-			<span @click="toRegister">没有账号？马上注册</span>
-		</div>
-
-		<div class="register-wrap" v-show="showRegister">
-			<h3>注册</h3>
-			<p v-show="showTishi">{{tishi}}</p>
-			<input type="text" placeholder="请输入用户名" v-model="newUsername">
-			<input type="password" placeholder="请输入密码" v-model="newPassword">
-			<button @click="register">注册</button>
-			<span @click="toLogin">已有账号？马上登录</span>
 		</div>
 	</div>
 </template>
@@ -23,27 +13,26 @@
 <script>
 import axios from 'axios'
 import qs from 'qs'
-import { setCookie, getCookie } from '../../assets/js/cookie.js'
 export default {
   name: 'Login',
   data () {
     return {
-      showLogin: true,
-      showRegister: false,
       showTishi: false,
       tishi: '',
       username: '',
-      password: '',
-      newUsername: '',
-      newPassword: ''
+      password: ''
     }
   },
   methods: {
     login () {
-      if (this.username == '' || this.password == '') {
-        alert("请输入用户名")
+      if (this.username === '') {
+        this.tishi = '请输入用户名'
+        this.showTishi = true
+      } else if (this.password === '') {
+        this.tishi = '请输入密码'
+        this.showTishi = true
       } else {
-		    let data = {'username':this.username,'password':this.password}
+        this.showTishi = false
         axios({
           method: 'POST',
           url: '/api/user/login.do',
@@ -63,25 +52,9 @@ export default {
       if (res.data.success) {
         this.$router.push('/home')
       } else {
-        alert('用户名密码错误')
+        this.$message.error('用户名或密码错误！')
       }
-	  },
-    register () {
-      alert('注册成功')
-    },
-    toLogin () {
-	  this.showRegister = !this.showRegister
-      this.showLogin = !this.showLogin
-    },
-    toRegister () {
-	  this.showLogin = !this.showLogin
-	  this.showRegister = !this.showRegister
-    }
-  },
-  mounted () {
-    if (getCookie('username')) {
-      this.$router.push('/home')
-    }
+	  }
   }
 }
 </script>

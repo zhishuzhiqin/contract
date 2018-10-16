@@ -5,41 +5,41 @@
 </template>
 
 <script>
-import ContractList from "./components/ContractList";
-import axios from "axios";
-import qs from "qs";
+import ContractList from './components/ContractList'
+import axios from 'axios'
+import qs from 'qs'
 export default {
-  name: "TemplateManage",
-  data() {
+  name: 'TemplateManage',
+  data () {
     return {
       contractList: []
-    };
+    }
   },
   components: {
     ContractList
   },
   methods: {
-    getListInfo() {
+    getListInfo () {
       axios({
-        method: "POST",
-        url: "/api/template/list.do",
+        method: 'POST',
+        url: '/api/template/list.do',
         data: qs.stringify({
           groupId: 7,
           type: 0,
-          name: ""
+          name: ''
         }),
         headers: {
-          "Content-type": "application/x-www-form-urlencoded"
+          'Content-type': 'application/x-www-form-urlencoded'
         }
       }).then(({ data }) => {
-        this.contractList = data;
-      });
+        this.contractList = data
+      })
     }
   },
-  created() {
-    this.getListInfo();
+  created () {
+    this.getListInfo()
   }
-};
+}
 </script>
 
 <style lang="stylus" scoped="scoped">

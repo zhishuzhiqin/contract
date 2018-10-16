@@ -29,6 +29,8 @@ module.exports = {
     "no-multiple-empty-lines": [0, {"max": 100}],
     //空格
     "no-tabs": 'off',
-    "no-mixed-spaces-and-tabs": 'off'
+    "no-mixed-spaces-and-tabs": 'off',
+    //关闭禁止混用tab和空格
+    "no-mixed-spaces-and-tabs": [0]
   }
 }
