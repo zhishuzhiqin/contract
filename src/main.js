@@ -5,31 +5,30 @@ import App from './App'
 import router from './router'
 import store from './store'
 import axios from 'axios'
+import 'styles/reset.css'
 import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
 import 'styles/iconfont.css'
-import 'styles/reset.css'
 import 'styles/border.css'
 
 Vue.config.productionTip = false
 Vue.use(ElementUI)
 
 const instance = axios.create({
-  baseURL: 'http://localhost:8888/api',
-  timeout: 1000,
+  baseURL: 'http://localhost:8888',
   headers: {'X-Requested-width': 'XMLHttpRequest'}
 })
 instance.interceptors.request.use(
-  data => {
-    if (data.headers.sessionstatus && data.headers.sessionstatus == 'timeout') {
-      router.push({ path: '/login'})
+  config => {
+    if (config.headers.sessionstatus && config.headers.sessionstatus === 'timeout') {
+      router.push({path: '/login'})
       this.$message({
         showClose: true,
         message: '请重新登录',
         type: 'error'
       })
     }
-  return data
+    return config
   },
   error => {
     return Promise.reject(error)

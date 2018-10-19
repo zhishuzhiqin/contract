@@ -7,7 +7,6 @@
 		<el-aside class="layout_left">
 			<menu-tree
 				@change="handleMenuChange"
-				:treeData="treeData"
 			></menu-tree>
 		</el-aside>
 		<el-main class="layout_right">
@@ -20,13 +19,10 @@
 <script>
 import menuTree from './components/menuTree'
 import homeHead from './components/Head'
-import axios from 'axios'
 export default {
   name: 'Home',
   data () {
-    return {
-			treeData: []
-		}
+    return {}
   },
   components: {
     menuTree,
@@ -34,22 +30,15 @@ export default {
   },
   methods: {
     handleMenuChange (url) {
-	  	this.$router.push(url)
-		},
-		getTreeData () {
-			axios({
-          method: 'POST',
-          url: '/api/webpage/ucredit/js/tree_data1.json'
-        }).then(this.showTree)
-		},
-		showTree (res) {
-			this.treeData = res.data
-			console.log(this.treeData)
-		}
-	},
-	mounted () {
-		this.getTreeData ()
-	}
+      this.$router.push(url)
+    },
+    firstLoad () {
+      this.$router.push('/variableManage')
+    }
+  },
+  mounted () {
+    this.firstLoad()
+  }
 }
 </script>
 

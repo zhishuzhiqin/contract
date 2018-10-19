@@ -1,6 +1,6 @@
 <template>
 	<el-table
-    :data="contractList"
+    :data="contractListDate"
     height="500"
     border
     style="width: 100%">
@@ -23,9 +23,9 @@
 
 <script>
 export default {
-  name: 'ContractList',
+  name: 'FormList',
   props: {
-    contractList: Array
+    contractListDate: Array
   },
   data () {
     return {}

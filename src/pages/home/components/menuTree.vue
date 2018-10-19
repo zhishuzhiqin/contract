@@ -15,8 +15,8 @@
 					class="child"
 					v-for="(child, index) of item.children"
 					:key="index"
-					@click="handleMenuClick(child.url)"
-					v-bind:class="{'child-current': index==current}"
+					@click="handleMenuClick(index, child.url)"
+					v-bind:class="{'child-current': index == currentIndex}"
 				  >
 					  {{child.title}}
 				  </li>
@@ -28,11 +28,11 @@
 
 <script>
 export default {
-	name: 'menuTree',
+  name: 'menuTree',
   data () {
     return {
       activeNames: ['1'],
-      current: 0,
+      currentIndex: 0,
       currentClass: 'child-current',
       list: [
         {
@@ -74,8 +74,8 @@ export default {
     }
   },
   methods: {
-    addClass (className) {},
-    handleMenuClick (url) {
+    handleMenuClick (index, url) {
+      this.currentIndex = index
       this.$emit('change', url)
     }
   }
@@ -83,53 +83,45 @@ export default {
 </script>
 
 <style lang="stylus" scoped="scoped">
-.menu-title {
-	position: relative;
-	line-height: 1.2rem;
-}
-	.menu-icon {
-		text-align: center;
-		font-size: 0.4rem;
-		background: transparent;
-		margin: 0.2rem;
-	}
+.menu-title
+	position: relative
+	line-height: 1.2rem
 
-	.menu-icon-right {
-		text-align: center;
-		position: absolute;
-		right: 0.2rem;
-		top: 0;
-		cursor: pointer;
-	}
+	.menu-icon
+		text-align: center
+		font-size: 0.4rem
+		background: transparent
+		margin: 0.2rem
 
+	.menu-icon-right
+		text-align: center
+		position: absolute
+		right: 0.2rem
+		top: 0
+		cursor: pointer
 
-.list-hidden {
-	color: #93939b;
-}
+.list-hidden
+	color: #93939b
 
-.list-show {
-	color: #ffffff;
-}
+.list-show
+	color: #ffffff
 
-.child-list {
-	line-height: 1rem;
-	color: #93939b;
-	background: #3c3c44;
+.child-list
+	line-height: 1rem
+	color: #606060
+	background: #ffffff
 
-	.child {
-		padding-left: 1rem;
-		height: 1rem;
+	.child
+		padding-left: 1rem
+		height: 1rem
 		display: block;
+		border-top: 1px solid #e4e4e4
 
-		&:hover {
-			background-color: #46464e;
-			color: #fff;
-		}
-	}
+		&:hover
+			background-color: #46464e
+			color: #fff
 
-	.child-current {
-		background-color: #46464e;
-		color: #fff;
-	}
-}
+	.child-current
+		background-color: #46464e
+		color: #fff
 </style>

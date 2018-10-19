@@ -3,9 +3,9 @@
 </template>
 
 <script>
-	export default {
-		name: 'RuleCheck'
-	}
+export default {
+  name: 'RuleCheck'
+}
 </script>
 
 <style lang="stylus" scoped="scoped">
