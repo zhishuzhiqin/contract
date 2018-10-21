@@ -14,13 +14,22 @@ import 'styles/border.css'
 Vue.config.productionTip = false
 Vue.use(ElementUI)
 
+// const instance = axios.create({
+//   baseURL: 'http://localhost:8888',
+//   headers: {'X-Requested-width': 'XMLHttpRequest'}
+// })
+const host = process.env.NODE_ENV === 'development' ? '/api' : '' // 根据 process.env.NODE_ENV 的值判断当前是什么环境
 const instance = axios.create({
-  baseURL: 'http://localhost:8888',
-  headers: {'X-Requested-width': 'XMLHttpRequest'}
+  baseURL: host,
+  headers: {'X-Requested-With': 'XMLHttpRequest'}
 })
-instance.interceptors.request.use(
-  config => {
-    if (config.headers.sessionstatus && config.headers.sessionstatus === 'timeout') {
+
+Vue.prototype.instance = instance
+
+instance.interceptors.response.use(
+  data => {
+    debugger
+    if (data.headers.sessionstatus && data.headers.sessionstatus === 'timeout') {
       router.push({path: '/login'})
       this.$message({
         showClose: true,
@@ -28,7 +37,7 @@ instance.interceptors.request.use(
         type: 'error'
       })
     }
-    return config
+    return data
   },
   error => {
     return Promise.reject(error)

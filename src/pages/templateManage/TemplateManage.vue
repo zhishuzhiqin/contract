@@ -1,7 +1,7 @@
 <template>
 	<div>
     <form-list
-      :contractListDate = "contractListDate"
+      :contractListData = "contractListData"
       v-loading = "loading"
     ></form-list>
   </div>
@@ -9,13 +9,12 @@
 
 <script>
 import FormList from './components/FormList'
-import axios from 'axios'
 import qs from 'qs'
 export default {
   name: 'TemplateManage',
   data () {
     return {
-      contractListDate: [],
+      contractListData: [],
       timeCost: 0,
       loading: true
     }
@@ -25,26 +24,19 @@ export default {
   },
   methods: {
     getListInfo () {
-      var axiosDate = new Date()
-      axios({
-        method: 'POST',
-        url: '/api/template/list.do',
-        data: qs.stringify({
-          groupId: 7,
-          type: 0,
-          name: ''
-        }),
-        headers: {
-          'Content-type': 'application/x-www-form-urlencoded'
-        }
-      }).then(({ data }) => {
-        let oDate = new Date()
-        let oTimeCost = oDate.getTime() - axiosDate.getTime()
-        setTimeout(() => {
-          this.loading = false
-        }, oTimeCost)
-        this.contractListDate = data
-      })
+      this.instance.post('/template/list.do',qs.stringify({
+                groupId: 7,
+                type: 0,
+                name: ""
+            }), {
+            headers: {
+              'Content-Type': 'application/x-www-form-urlencoded',
+            }
+           }).then(({responseData})=> {
+             debugger
+              this.contractListData = responseData
+              this.loading = false
+            });
     }
   },
   created () {
