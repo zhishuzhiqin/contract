@@ -13,24 +13,18 @@ import 'styles/border.css'
 
 Vue.config.productionTip = false
 Vue.use(ElementUI)
+Vue.prototype.instance = instance
+Vue.use(Element, { size: 'small', zIndex: 3000 })
 
-// const instance = axios.create({
-//   baseURL: 'http://localhost:8888',
-//   headers: {'X-Requested-width': 'XMLHttpRequest'}
-// })
-const host = process.env.NODE_ENV === 'development' ? '/api' : '' // 根据 process.env.NODE_ENV 的值判断当前是什么环境
 const instance = axios.create({
-  baseURL: host,
+  baseURL: '/api',
   headers: {'X-Requested-With': 'XMLHttpRequest'}
 })
 
-Vue.prototype.instance = instance
-
 instance.interceptors.response.use(
   data => {
-    debugger
     if (data.headers.sessionstatus && data.headers.sessionstatus === 'timeout') {
-      router.push({path: '/login'})
+      router.push({path: '/'})
       this.$message({
         showClose: true,
         message: '请重新登录',

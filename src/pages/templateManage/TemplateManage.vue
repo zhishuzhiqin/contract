@@ -24,19 +24,24 @@ export default {
   },
   methods: {
     getListInfo () {
-      this.instance.post('/template/list.do',qs.stringify({
-                groupId: 7,
-                type: 0,
-                name: ""
-            }), {
-            headers: {
-              'Content-Type': 'application/x-www-form-urlencoded',
-            }
-           }).then(({responseData})=> {
-             debugger
-              this.contractListData = responseData
-              this.loading = false
-            });
+      const urlString = '/template/list.do'
+      let postData = qs.stringify({
+        groupId: 7,
+        type: 0,
+        name: ''
+      })
+      this.instance.post(
+        urlString,
+        postData,
+        {
+          headers: {
+            'Content-Type': 'application/x-www-form-urlencoded'
+          }
+        }
+      ).then(responseData => {
+        this.contractListData = responseData.data
+        this.loading = false
+      })
     }
   },
   created () {
