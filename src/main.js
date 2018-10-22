@@ -10,25 +10,30 @@ import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
 import 'styles/iconfont.css'
 import 'styles/border.css'
+import { request } from 'https';
 
 Vue.config.productionTip = false
 Vue.use(ElementUI)
 
 const instance = axios.create({
-  baseURL: 'http://localhost:8888',
+  baseURL: '/api',
   headers: {'X-Requested-width': 'XMLHttpRequest'}
 })
-instance.interceptors.request.use(
-  config => {
-    if (config.headers.sessionstatus && config.headers.sessionstatus === 'timeout') {
-      router.push({path: '/login'})
+Vue.prototype.$instance = instance
+debugger
+instance.interceptors.response.use(
+  response => {
+    console.log(response)
+    debugger
+    if (response.headers.sessionstatus && response.headers.sessionstatus === 'timeout') {
+      router.push({path: '/'})
       this.$message({
         showClose: true,
         message: '请重新登录',
         type: 'error'
       })
     }
-    return config
+    return response
   },
   error => {
     return Promise.reject(error)

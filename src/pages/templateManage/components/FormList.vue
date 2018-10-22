@@ -1,6 +1,6 @@
 <template>
 	<el-table
-    :data="contractListDate"
+    :data="contractListData"
     height="500"
     border
     style="width: 100%">
@@ -25,7 +25,7 @@
 export default {
   name: 'FormList',
   props: {
-    contractListDate: Array
+    contractListData: Array
   },
   data () {
     return {}
